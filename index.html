@@ -2,320 +2,50 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文献代查服务 - CNKI-WOS</title>
+    <title>文献代查服务</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
-        }
-        
-        .container {
+        .form-container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
         }
         
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-        
-        .subtitle {
-            text-align: center;
-            color: #7f8c8d;
-            margin-bottom: 30px;
-        }
-        
-        .step-indicator {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-            gap: 30px;
-        }
-        
-        .step {
-            display: flex;
-            align-items: center;
-            color: #95a5a6;
-        }
-        
-        .step.active {
-            color: #27ae60;
-        }
-        
-        .step-number {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: #ecf0f1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
-            font-weight: bold;
-        }
-        
-        .step.active .step-number {
-            background: #27ae60;
-            color: white;
-        }
-        
-        .form-section {
-            background: white;
-            padding: 30px;
-            margin: 20px 0;
+        .airtable-embed {
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
-        .form-section h2 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .form-section h2::before {
-            content: "📝";
-            margin-right: 10px;
-        }
-        
-        .payment-section {
-            background: white;
-            padding: 30px;
+        .tips {
+            background: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
             margin: 20px 0;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .payment-section h2 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .payment-section h2::before {
-            content: "💰";
-            margin-right: 10px;
-        }
-        
-        .price-info {
-            background: #e8f5e9;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #27ae60;
-            text-align: center;
-        }
-        
-        .payment-methods {
-            display: flex;
-            gap: 30px;
-            justify-content: center;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-        
-        .payment-method {
-            text-align: center;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            transition: transform 0.3s;
-        }
-        
-        .payment-method:hover {
-            transform: translateY(-5px);
-        }
-        
-        .payment-method img {
-            width: 180px;
-            height: 180px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .payment-method p {
-            margin-top: 10px;
-            font-weight: 500;
-        }
-        
-        .warning-box {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 4px;
-        }
-        
-        .warning-box p {
-            color: #856404;
-            margin: 5px 0;
-        }
-        
-        .contact-info {
-            background: #e3f2fd;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 30px;
-            text-align: center;
-        }
-        
-        .contact-info h3 {
-            color: #1976d2;
-            margin-bottom: 10px;
-        }
-        
-        /* 响应式设计 */
-        @media (max-width: 600px) {
-            .payment-methods {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .step-indicator {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .container {
-                padding: 10px;
-            }
-            
-            .form-section, .payment-section {
-                padding: 20px;
-            }
-        }
-        
-        /* 加载动画 */
-        .loading {
-            text-align: center;
-            padding: 50px;
-            color: #7f8c8d;
-        }
-        
-        iframe {
-            border-radius: 8px;
-            min-height: 800px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="form-container">
         <h1>📚 文献代查服务</h1>
-        <p class="subtitle">专业、快速、可靠的学术文献获取服务</p>
         
-        <!-- 步骤指示器 -->
-        <div class="step-indicator">
-            <div class="step active">
-                <div class="step-number">1</div>
-                <span>填写需求</span>
-            </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <span>支付费用</span>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <span>接收文献</span>
-            </div>
+        <div class="tips">
+            💡 提示：提交需求后，请查看支付说明完成付款
         </div>
         
-        <!-- 步骤1：填写需求 -->
-        <div class="form-section">
-            <h2>填写您的文献需求</h2>
-            <div class="loading" id="form-loading">
-                正在加载表单，请稍候...
-            </div>
-            <iframe 
-                id="tencent-form"
-                src="https://docs.qq.com/form/page/DVWxCQnBwVXBkb1Jk"
-                frameborder="0" 
-                width="100%" 
-                height="800"
-                onload="document.getElementById('form-loading').style.display='none';"
-                style="display:block;">
-            </iframe>
-        </div>
+        <!-- Airtable表单 -->
+        <iframe class="airtable-embed" 
+            src="https://airtable.com/appTsiriwjyfmEKj7/pagsGuvqkLYRuYgLM/form"
+            frameborder="0" 
+            onmousewheel="" 
+            width="100%" 
+            height="800" 
+            style="background: transparent;">
+        </iframe>
         
-        <!-- 步骤2：支付 -->
-        <div class="payment-section">
-            <h2>支付服务费用</h2>
-            
-            <div class="price-info">
-                📑 标准服务：¥50/篇 | ⚡ 加急服务：¥80/篇（24小时内）
-            </div>
-            
-            <div class="payment-methods">
-                <div class="payment-method">
-                    <img src="https://via.placeholder.com/180x180/09BB07/FFFFFF?text=支付宝" alt="支付宝收款码">
-                    <p>支付宝扫码</p>
-                </div>
-                <div class="payment-method">
-                    <img src="https://via.placeholder.com/180x180/00C800/FFFFFF?text=微信支付" alt="微信收款码">
-                    <p>微信扫码</p>
-                </div>
-            </div>
-            
-            <div class="warning-box">
-                <p><strong>⚠️ 支付须知：</strong></p>
-                <p>1. 支付时请备注您在表单中填写的<strong>邮箱地址</strong></p>
-                <p>2. 支付完成后，请将支付截图发送至下方邮箱</p>
-                <p>3. 我们将在收到款项后的24-48小时内发送文献</p>
-            </div>
-        </div>
-        
-        <!-- 联系方式 -->
-        <div class="contact-info">
-            <h3>📧 联系我们</h3>
-            <p>邮箱：<a href="mailto:your-email@example.com">your-email@example.com</a></p>
-            <p>处理时间：周一至周日 9:00-21:00</p>
-            <p>紧急联系：<a href="javascript:void(0)" onclick="alert('微信号：your-wechat')">点击查看微信</a></p>
+        <!-- 支付信息 -->
+        <div class="payment-info">
+            <h2>支付方式</h2>
+            <!-- 你的支付码等信息 -->
         </div>
     </div>
-    
-    <script>
-        // 平滑滚动到支付区域
-        function scrollToPayment() {
-            document.querySelector('.payment-section').scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
-        
-        // 自动高亮当前步骤
-        window.addEventListener('scroll', function() {
-            const formSection = document.querySelector('.form-section').offsetTop;
-            const paymentSection = document.querySelector('.payment-section').offsetTop;
-            const scrollPosition = window.pageYOffset;
-            
-            const steps = document.querySelectorAll('.step');
-            
-            if (scrollPosition < paymentSection - 200) {
-                steps[0].classList.add('active');
-                steps[1].classList.remove('active');
-            } else {
-                steps[0].classList.remove('active');
-                steps[1].classList.add('active');
-            }
-        });
-        
-        // 提示用户填写完表单后查看支付信息
-        setTimeout(function() {
-            console.log('表单加载完成');
-        }, 3000);
-    </script>
 </body>
 </html>
