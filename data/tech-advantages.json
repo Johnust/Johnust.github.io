@@ -1,0 +1,25 @@
+{
+  "technologies": [
+    {
+      "title": "智能需求识别",
+      "icon": "🎯",
+      "description": "深层次科研画像构建，需求自学习进化机制"
+    },
+    {
+      "title": "专业化LLM引擎",
+      "icon": "🤖",
+      "description": "学科专属Prompt库，自动化Prompt生成"
+    },
+    {
+      "title": "Graph-RAG系统",
+      "icon": "🕸️",
+      "description": "动态知识图谱构建，关键节点智能识别"
+    },
+    {
+      "title": "研究空白探测",
+      "icon": "🔬",
+      "description": "缺口分析算法，前沿趋势预测模型"
+    }
+  ]
+}
+
