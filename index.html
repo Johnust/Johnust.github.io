@@ -21,6 +21,11 @@
                     },
                     fontFamily: {
                         'sans': ['Inter', 'system-ui', 'sans-serif']
+                    },
+                    aspectRatio: {
+                        '4/3': '4 / 3',
+                        '3/2': '3 / 2',
+                        'square': '1 / 1',
                     }
                 }
             }
@@ -73,36 +78,37 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="bg-gradient-to-br from-tech-blue via-tech-blue-light to-blue-900 text-white pt-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div class="text-center">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                    智研TRACK
-                    <span class="block text-3xl md:text-5xl text-accent-cyan">智能文献引擎，驱动科研新范式</span>
-                </h1>
-                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-gray-200">
-                    您的专属AI科研助手，重塑文献工作流程。告别信息洪流，拥抱精准洞察。
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="https://f.wps.cn/g/mE2RUEkm/" target="_blank" 
-                       class="bg-accent-cyan hover:bg-blue-400 text-white font-bold py-4 px-8 rounded-lg text-lg transition-colors transform hover:scale-105">
-                        提交文献需求
-                    </a>
-                    <a href="#features" 
-                       class="bg-transparent hover:bg-white/10 text-white font-bold py-4 px-8 rounded-lg text-lg border-2 border-white transition-colors">
-                        了解更多
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Hero Image -->
-            <div class="mt-16 text-center fade-in">
-                <div class="bg-white/10 rounded-xl p-2 md:p-3 max-w-5xl mx-auto aspect-video overflow-hidden shadow-2xl">
-                    <img src="https://r2.flowith.net/files/o/1748103260384-Digital_Art_Dynamic_Split_Screen_Composition_index_1@1024x1024.png" 
-                         alt="智研TRACK动态抽象视觉效果" 
-                         class="w-full h-full object-cover rounded-lg"
-                         loading="lazy">
-                </div>
+    <section id="home" class="relative text-white pt-16 min-h-screen flex flex-col justify-center items-center overflow-hidden">
+        <!-- Video Background -->
+        <div class="absolute inset-0 w-full h-full -z-20">
+            <video autoplay loop muted playsinline
+                   poster="https://r2.flowith.net/files/o/1748103260384-Digital_Art_Dynamic_Split_Screen_Composition_index_1@1024x1024.png"
+                   class="w-full h-full object-cover">
+                <source src="https://v3.fal.media/files/zebra/HnMTzJ3t_fl7l64NBFcPF_output.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <!-- Overlay for text readability -->
+        <div class="absolute inset-0 w-full h-full bg-tech-blue/70 -z-10"></div>
+
+        <!-- Hero Content -->
+        <div class="relative z-0 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-20 flex-grow flex flex-col justify-center text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                智研TRACK
+                <span class="block text-3xl md:text-5xl text-accent-cyan">智能文献引擎，驱动科研新范式</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-gray-100">
+                您的专属AI科研助手，重塑文献工作流程。告别信息洪流，拥抱精准洞察。
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://f.wps.cn/g/mE2RUEkm/" target="_blank" 
+                   class="bg-accent-cyan hover:bg-blue-400 text-white font-bold py-4 px-8 rounded-lg text-lg transition-colors transform hover:scale-105">
+                    提交文献需求
+                </a>
+                <a href="#features" 
+                   class="bg-transparent hover:bg-white/20 text-white font-bold py-4 px-8 rounded-lg text-lg border-2 border-white transition-colors hover:border-gray-300">
+                    了解更多
+                </a>
             </div>
         </div>
     </section>
@@ -117,11 +123,13 @@
                 </p>
             </div>
             <!-- Product Overview Image -->
-            <div class="my-12 md:my-16 max-w-4xl mx-auto fade-in">
-                <img src="https://r2.flowith.net/files/o/1748103260469-ZhiyanTRACKInterfaceWithUserInteractionAndComplexDataVisualization_index_2@1024x1024.png" 
-                     alt="智研TRACK用户界面与复杂数据可视化" 
-                     class="w-full h-auto rounded-xl shadow-2xl object-contain max-h-[500px] mx-auto"
-                     loading="lazy">
+            <div id="product-overview-image-wrapper" class="my-12 md:my-16 max-w-2xl mx-auto fade-in">
+                <div class="aspect-square w-full max-w-[500px] mx-auto">
+                    <img src="https://r2.flowith.net/files/o/1748103260469-ZhiyanTRACKInterfaceWithUserInteractionAndComplexDataVisualization_index_2@1024x1024.png" 
+                         alt="智研TRACK用户界面与复杂数据可视化" 
+                         class="w-full h-full object-contain rounded-xl shadow-2xl"
+                         loading="lazy">
+                </div>
             </div>
         </div>
     </section>
@@ -135,11 +143,13 @@
             </div>
 
             <!-- Key Features Image -->
-            <div class="mb-12 md:mb-16 max-w-4xl mx-auto fade-in">
-                <img src="https://r2.flowith.net/files/o/1748103280786-ConfidentResearcherUsingZhiyanTRACKApplication_index_5@1024x1024.png" 
-                     alt="研究员使用智研TRACK应用" 
-                     class="w-full h-auto rounded-xl shadow-2xl object-contain max-h-[500px] mx-auto"
-                     loading="lazy">
+            <div id="features-image-wrapper" class="mb-12 md:mb-16 max-w-2xl mx-auto fade-in">
+                <div class="aspect-square w-full max-w-[500px] mx-auto">
+                    <img src="https://r2.flowith.net/files/o/1748103280786-ConfidentResearcherUsingZhiyanTRACKApplication_index_5@1024x1024.png" 
+                         alt="研究员使用智研TRACK应用" 
+                         class="w-full h-full object-contain rounded-xl shadow-2xl"
+                         loading="lazy">
+                </div>
             </div>
             
             <div id="features-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -163,11 +173,13 @@
             </div>
 
             <!-- Technology Highlights Image -->
-            <div class="mb-12 md:mb-16 max-w-4xl mx-auto fade-in">
-                <img src="https://r2.flowith.net/files/o/1748103268091-immersive_3d_knowledge_graph_visualization_of_research_evolution_index_3@1024x1024.png" 
-                     alt="沉浸式3D知识图谱可视化" 
-                     class="w-full h-auto rounded-xl shadow-2xl object-contain max-h-[500px] mx-auto"
-                     loading="lazy">
+            <div id="technology-image-wrapper" class="mb-12 md:mb-16 max-w-2xl mx-auto fade-in">
+                 <div class="aspect-square w-full max-w-[500px] mx-auto">
+                    <img src="https://r2.flowith.net/files/o/1748103268091-immersive_3d_knowledge_graph_visualization_of_research_evolution_index_3@1024x1024.png" 
+                         alt="沉浸式3D知识图谱可视化" 
+                         class="w-full h-full object-contain rounded-xl shadow-2xl"
+                         loading="lazy">
+                </div>
             </div>
             
             <div id="tech-preview" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -191,11 +203,13 @@
             </div>
 
             <!-- Use Cases Image -->
-            <div class="mb-12 md:mb-16 max-w-4xl mx-auto fade-in">
-                <img src="https://r2.flowith.net/files/o/1748103268653-Researcher_Overwhelmed_by_Data_Overload_index_0@1024x1024.png" 
-                     alt="科研人员面临信息过载挑战" 
-                     class="w-full h-auto rounded-xl shadow-2xl object-contain max-h-[500px] mx-auto"
-                     loading="lazy">
+            <div id="use-cases-image-wrapper" class="mb-12 md:mb-16 max-w-2xl mx-auto fade-in">
+                <div class="aspect-square w-full max-w-[500px] mx-auto">
+                    <img src="https://r2.flowith.net/files/o/1748103268653-Researcher_Overwhelmed_by_Data_Overload_index_0@1024x1024.png" 
+                         alt="科研人员面临信息过载挑战" 
+                         class="w-full h-full object-contain rounded-xl shadow-2xl"
+                         loading="lazy">
+                </div>
             </div>
             
             <div id="use-cases-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -238,11 +252,13 @@
             </div>
             
             <!-- About Us Image -->
-            <div class="my-12 md:my-16 max-w-3xl mx-auto fade-in">
-                 <img src="https://r2.flowith.net/files/o/1748103263136-Abstract_Visualization_of_Knowledge_Network_Highlighting_Innovation_Gap_index_4@1024x1024.png" 
-                      alt="知识网络创新缺口抽象可视化" 
-                      class="w-full h-auto rounded-xl shadow-2xl object-contain max-h-[400px] mx-auto"
-                      loading="lazy">
+            <div id="about-us-image-wrapper" class="my-12 md:my-16 max-w-xl mx-auto fade-in">
+                 <div class="aspect-square w-full max-w-[400px] mx-auto">
+                     <img src="https://r2.flowith.net/files/o/1748103263136-Abstract_Visualization_of_Knowledge_Network_Highlighting_Innovation_Gap_index_4@1024x1024.png" 
+                          alt="知识网络创新缺口抽象可视化" 
+                          class="w-full h-full object-contain rounded-xl shadow-2xl"
+                          loading="lazy">
+                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
