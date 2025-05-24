@@ -1,13 +1,64 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的网站</title>
-    <link rel="stylesheet" href="style.css">
+    <title>文献代查服务</title>
+    <style>
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .form-section { background: #f5f5f5; padding: 20px; margin: 20px 0; }
+        .payment-section { background: #e8f5e9; padding: 20px; margin: 20px 0; }
+        .submit-btn { background: #4CAF50; color: white; padding: 10px 20px; }
+    </style>
 </head>
 <body>
-    <h1>欢迎访问我的网站</h1>
-    <p>这是通过 GitHub Pages 部署的网站</p>
+    <div class="container">
+        <h1>文献代查服务</h1>
+        
+        <!-- 步骤1：填写需求 -->
+        <div class="form-section">
+            <h2>步骤1：填写您的需求</h2>
+            <iframe class="airtable-embed" 
+                src="https://airtable.com/embed/shr1234567890"
+                frameborder="0" width="100%" height="600">
+            </iframe>
+        </div>
+        
+        <!-- 步骤2：支付 -->
+        <div class="payment-section">
+            <h2>步骤2：支付费用</h2>
+            <p>服务费：¥50/篇</p>
+            
+            <!-- 支付宝/微信收款码 -->
+            <div style="display: flex; gap: 20px;">
+                <div>
+                    <img src="alipay.jpg" width="200" alt="支付宝">
+                    <p>支付宝扫码</p>
+                </div>
+                <div>
+                    <img src="wechat.jpg" width="200" alt="微信">
+                    <p>微信扫码</p>
+                </div>
+            </div>
+            
+            <p style="color: red;">
+                ⚠️ 支付后请将订单截图发送至：your-email@example.com
+            </p>
+        </div>
+        
+        <!-- 自动发送邮件通知 -->
+        <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+        <script>
+            // EmailJS 自动通知配置
+            emailjs.init("YOUR_PUBLIC_KEY");
+            
+            // 监听表单提交后自动发送通知
+            function sendNotification(data) {
+                emailjs.send('service_id', 'template_id', {
+                    user_email: data.email,
+                    request: data.request,
+                    time: new Date().toLocaleString()
+                });
+            }
+        </script>
+    </div>
 </body>
 </html>
